@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="front/css/index.css" />
+    <link rel="stylesheet" href="front/mediaQueries/mediaIndex.css" />
+    <title>Signup / Log in</title>
+  </head>
+
+  <body>
+    <section>
+      <div class="ctnr-form-register-login">
+        <div class="left-side">
+          <!-- Login interface -->
+          <div class="ctnr-form-login">
+            <h2>Login</h2>
+            <form class="form-login">
+              <label>Mail</label>
+              <input
+                type="email"
+                placeholder="azerty@gmail.com"
+                id="login-mail"
+              />
+
+              <label>Mot de passe</label>
+              <input
+                type="password"
+                placeholder="azerty00"
+                id="login-password"
+              />
+              <input type="submit" id="send-login" value="Se connecter" />
+            </form>
+            <br />
+            <a href="front/resetPassword.html">Mot de passe oublié ?</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-firestore.js"></script>
+
+    <!-- Lib -->
+    <script src="lib/js/jquery.js"></script>
+
+    <script src="back/js/index/index.js"></script>
+    <script src="back/js/index/functionIndex/login.js"></script>
+  </body>
+</html>

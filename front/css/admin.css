@@ -1,0 +1,704 @@
+@font-face {
+  font-family: "MontserratRegular";
+  src: url("../../font/montserrat/Montserrat-Regular.ttf");
+}
+
+@font-face {
+  font-family: "MontserratBold";
+  src: url("../../font/montserrat/Montserrat-Bold.ttf");
+}
+
+* {
+  font-family: MontserratRegular;
+}
+
+body {
+  background-color: whitesmoke;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2 {
+  font-family: MontserratBold;
+  color: #47748b;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+input {
+  outline: none;
+  border: 1px solid grey;
+  padding: 8px;
+}
+
+::placeholder {
+  font-size: 12px;
+}
+
+.btn {
+  padding: 8px 20px;
+  margin: 10px 0;
+  background-color: #47748b;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+
+.btn:hover {
+  box-shadow: 0px 0px 0px 2px #47748b inset, 0px 0px 0px 4px white inset;
+  color: white;
+}
+
+.btn:active {
+  transform: scale(0.9);
+}
+
+/*--------------------------------------------- Disconnect container*/
+.ctnr-name-disconect {
+  width: auto;
+  height: 50px;
+  margin-right: 30px;
+}
+
+.name-disconnect {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.name-disconnect h3 {
+  margin: 0;
+  margin-right: 10px;
+}
+
+.disconnect-fai {
+  cursor: pointer;
+}
+
+/*--------------------------------------------- Div / form / input create dynamiquelly for update*/
+.update-student,
+.update-class,
+.add-subject-ctnr,
+.update-subject-ctnr {
+  z-index: 2;
+  width: 30%;
+  background-color: lightgrey;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  top: 1%;
+  left: 38%;
+}
+
+/* #update-student-form,
+#update-class-form {
+    display: flex;
+    flex-direction: column;
+} */
+
+/* #update-student-form span,
+#update-class-form span {
+    font-weight: bold;
+    text-transform: uppercase;
+} */
+
+#update-class-form input[type="text"]
+#update-student-form input[type="text"],
+#update-class-form input[type="text"],
+#add-datas-schedule input[type="text"],
+#update-datas-schedule input[type="text"],
+select {
+  padding: 5px 9px;
+  outline: none;
+  border-radius: 4px;
+  border: 1px solid grey;
+  width: 180px;
+  font-size: 14px;
+}
+
+/* #update-student-form label,
+#update-class-form label,
+#add-datas-schedule label,
+#update-datas-schedule label {
+    margin-top: 10px;
+} */
+
+/* #update-student-form input[type=button],
+#add-datas-schedule input[type=button],
+#update-datas-schedule input[type=button] {
+    cursor: pointer;
+} */
+
+.ctnr-add-subject,
+.ctnr-update-subject-div,
+.ctnr-update-class {
+  background-color: white;
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+}
+
+.ctnr-update-class p,
+.ctnr-add-subject p,
+.ctnr-update-subject-div p {
+  font-family: montserratBold;
+}
+
+#add-datas-schedule,
+#update-datas-schedule,
+#update-class-form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 20px auto;
+  background-color: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.5);
+}
+
+.add-subject-datepicker,
+.add-subject-subject,
+.add-subject-hour,
+.add-subject-room,
+.add-subject-class,
+.add-subject-former,
+.add-subject-color,
+.ctnr-update-day,
+.ctnr-update-subject,
+.ctnr-update-hour,
+.ctnr-update-room,
+.ctnr-update-class,
+.ctnr-update-former,
+.ctnr-update-color,
+.update-class-name {
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 15px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.update-class-name label,
+.add-subject-datepicker label,
+.add-subject-subject label,
+.add-subject-hour label,
+.add-subject-room label,
+.add-subject-class label,
+.add-subject-former label,
+.add-subject-color label,
+.ctnr-update-day label,
+.ctnr-update-subject label,
+.ctnr-update-hour label,
+.ctnr-update-room label,
+.ctnr-update-class label,
+.ctnr-update-former label,
+.ctnr-update-color label {
+  color: #47748b;
+}
+
+/*---------------------------------------------------------------Section 1: Create class*/
+#create-class {
+  width: 90%;
+  height: 300px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.ctnr-left-side-select {
+  width: 38%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: white;
+}
+
+/* Add class*/
+.left-side-show-list-former {
+  width: 38%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: white;
+}
+
+#form-create-class {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+/*Display different class*/
+.ctnr-right-side-class-exist {
+  width: 60%;
+  height: 100%;
+  padding: 15px;
+  background-color: white;
+  overflow: auto;
+}
+
+.ctnr-right-side-class-exist h2 {
+  padding: 15px;
+}
+
+/*Table create dynamically*/
+#create-class table {
+  width: 100%;
+}
+
+.title-class {
+  border-bottom: 2px solid grey;
+}
+
+.title-class th {
+  padding: 8px;
+}
+
+#list-class td {
+  padding: 8px;
+  background-color: whitesmoke;
+}
+
+/*----------------------------------------------------------------Section 2: Display users and attribute gradent*/
+#new-users {
+  width: calc(90% - 30px);
+  height: 400px;
+  max-height: 400px;
+  overflow: auto;
+  margin: 100px auto;
+  padding: 15px;
+  margin-bottom: 100px;
+  background-color: white;
+}
+
+/*container array*/
+.display-user-connected {
+  margin: 0 auto;
+  display: flex;
+  height: auto;
+  max-height: 250px;
+  flex-direction: column;
+  overflow-x: scroll;
+  overflow-x: hidden;
+}
+
+/*Title table users*/
+.title-user {
+  border-bottom: 2px solid grey;
+  margin-bottom: 10px;
+}
+
+.title-user th {
+  padding: 8px;
+}
+
+/*Array with list of user (<tr> create dynamically -> 02_saveGradentUser.js)*/
+.row-users {
+  background-color: whitesmoke;
+  margin: 1px;
+}
+
+.row-users p {
+  margin: 0;
+}
+
+#list-users-status td {
+  padding: 8px;
+}
+
+#list-users-status input[type="radio"] {
+  margin-right: 10px;
+}
+
+/*Submit value*/
+#save-gradent-user {
+  display: flex;
+  justify-content: center;
+}
+
+/*---------------------------------------------------------------------------ADD new users*/
+#add-student {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.create-user {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+#create-student-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 20%;
+}
+
+.appm p {
+  text-align: center;
+}
+
+#create-student-form input {
+  margin: 8px;
+}
+
+/*---------------------------------------------------------------------------------Section 3: Select class / show this list and delete it*/
+#select-class {
+  width: calc(90% - 30px);
+  height: 300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 100px;
+}
+
+/*Display table with student */
+.right-side-show-list-student {
+  width: 60%;
+  height: 100%;
+  background-color: white;
+  padding: 15px;
+  overflow: auto;
+}
+
+.show-list-student-top,
+.show-list-former-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+/*Container select for choose class*/
+.select-class-list {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+/*Select create dynamiquelly for choose class*/
+.display-student-list {
+  padding: 8px 12px;
+  outline: none;
+}
+
+/*Display list of class*/
+#display-class-student,
+#display-former {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#display-class-student table {
+  width: 100%;
+}
+
+/*Title table*/
+.title-datas-student,
+.title-datas-former {
+  border-bottom: 2px solid grey;
+}
+
+.title-datas-student th,
+.title-datas-former th {
+  padding: 8px;
+}
+
+/*datas into tbody*/
+#list-all-class td,
+#list-all-former td {
+  padding: 8px;
+  background-color: whitesmoke;
+}
+
+#list-all-class label,
+#list-all-former label {
+  display: flex;
+}
+
+.fai-identity,
+.fai-edit,
+.fai-delete {
+  cursor: pointer;
+}
+
+/*Container for select class*/
+.left-side-select-list-student {
+  /* margin-top: 8%; */
+  width: 40%;
+  height: 50%;
+  background-color: white;
+  padding: 15px;
+  align-items: center;
+}
+
+#display2 {
+  width: 100%
+}
+
+/*Container select*/
+.select-class-list {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+/*form*/
+/* #display-class input {
+    width: 100%;
+    font-size: 10px;
+} */
+
+/*ID card user*/
+.identity-student {
+  z-index: 2;
+  width: 30%;
+  background-color: lightgrey;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  top: 12%;
+  left: 38%;
+  -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.9);
+  -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.9);
+  box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.9);
+}
+
+.identity-student label {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 20px;
+}
+
+/*span ID card*/
+.data-identity-card {
+  margin-right: 3px;
+  color: #47748b;
+  font-size: 16px;
+}
+
+.identity-student p {
+  margin-top: 0;
+  font-size: 13px;
+}
+
+/*Edit user pictures*/
+.ctnr-picture-user {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  padding: 15px;
+}
+
+.picture-user {
+  width: 170px;
+  border-radius: 50%;
+  overflow: hidden;
+  height: 170px;
+  border: 2px solid #47748b;
+}
+
+.picture-user img {
+  width: 100%;
+  /* margin-top: -30px; */
+}
+
+.datas-users {
+  background-color: white;
+  width: 80%;
+  margin: 40px auto;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.5);
+}
+
+.name,
+.username,
+.class,
+.grade {
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 15px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.name label,
+.username label,
+.class label,
+.grade label {
+  color: #47748b;
+}
+
+.ctnr-btn-edit-user {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* #list-all-class form {
+    margin-top: 35px;
+} */
+
+/*------------------------------------------------Timetable section*/
+/*Timetable section*/
+#timetable-section {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/*Container CRUD*/
+.add-edit-delete-subject-ctnr {
+  margin-top: 80px;
+  width: 70%;
+  height: 250px;
+  background-color: white;
+  padding: 15px;
+  overflow: auto;
+}
+
+.btn-add {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/*Error if user click and not selected class*/
+.not-selected-class,
+.display-message-false {
+  padding: 6px;
+  border: 1px solid red;
+  text-align: center;
+}
+
+/*Hover colors infos*/
+.display-colors {
+  position: absolute;
+  width: 40%;
+  height: auto;
+  padding: 10px;
+  background-color: #47748b;
+  opacity: 0.86;
+  right: 125px;
+  border-radius: 4px;
+  color: white;
+  bottom: 155px;
+}
+
+.add-edit-delete-subject-ctnr table {
+  width: 100%;
+}
+
+/*<tr> in table*/
+.title-subject {
+  border-bottom: 2px solid grey;
+}
+
+.title-subject th {
+  padding: 8px;
+}
+
+#list-all-subject td {
+  padding: 8px;
+  background-color: whitesmoke;
+}
+
+.fai-edit-subject,
+.fai-delete-subject {
+  cursor: pointer;
+}
+
+/*-----------------------------Add subject form*/
+.ctnr-add-subject {
+  background-color: white;
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+}
+
+.ctnr-add-subject p {
+  font-family: montserratBold;
+}
+
+/*Display week*/
+.date {
+  width: 95%;
+  display: flex;
+  margin-left: 5%;
+}
+
+.date p {
+  padding: 8px;
+}
+
+/*Container btn for precWeek and nextWeek*/
+.btn-ctnr {
+  margin-top: 50px;
+  display: flex;
+  width: 95%;
+  justify-content: space-between;
+}
+
+/*-------------------------------------------------------------------Attendance record section */
+#attendance-record-section {
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 80px;
+}
+
+.display-attendance-student {
+  background-color: white;
+  padding: 15px;
+}
+
+.ctnr-attendance-choose-date {
+  display: flex;
+  justify-content: space-between;
+}
+
+#attendance-day {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 15px;
+}
+
+#attendance-record-section table {
+  width: 100%;
+}
+
+/*Title attendance*/
+.title-attendance-student {
+  border-bottom: 2px solid grey;
+}
+
+.title-attendance-student th {
+  padding: 8px;
+}
+
+#attendance-record-section td {
+  padding: 8px;
+  background-color: whitesmoke;
+}

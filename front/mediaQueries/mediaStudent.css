@@ -1,0 +1,80 @@
+@media /*screen*/ all and (max-width:574px) {
+
+    h3{
+        font-size: 10px;
+    }
+    .student-message-ctnr{
+        flex-direction: column;
+        height: auto;
+    }
+
+    .student-state{
+        width: 70%;
+    }
+
+    .ctnr-student-late, .ctnr-student-absent{
+            width: 60%;
+    }
+
+    #student-message{
+        align-items: center;
+        width: 100%;
+    }
+    #attendance-record-section th, label, .btn, ::placeholder, .date p, div{
+        font-size: 9px;
+    }
+
+    #attendance-record-section #title-attendance{
+        padding: 3px;
+    }
+    
+}
+
+@media all and (min-width:575px) and (max-width:766px) {
+
+    .student-message-ctnr{
+        flex-direction: column;
+        height: auto;
+    }
+
+    .student-state{
+        width: 70%;
+    }
+
+    .ctnr-student-late, .ctnr-student-absent{
+            width: 70%;
+    }
+
+    #student-message{
+        align-items: center;
+        width: 100%;
+    }
+    #attendance-record-section th, label, btn, ::placeholder, .date p{
+        font-size: 9px;
+    }
+}
+
+@media all and (min-width:767px) and (max-width:990px) {
+
+    .student-message-ctnr{
+        flex-direction: column;
+        height: auto;
+    }
+    .ctnr-student-late, .ctnr-student-absent{
+        width: 60%;
+    }
+
+    #attendance-record-section th, label, .btn, ::placeholder, .date p{
+        font-size: 12px;
+    }
+}
+
+@media all and (min-width:991px) {
+    .student-message-ctnr{
+        flex-direction: column;
+        height: auto;
+    }
+    .ctnr-student-late, .ctnr-student-absent{
+        width: 60%;
+    }
+}

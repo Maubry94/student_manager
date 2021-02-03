@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../lib/css/bootstrap.css">
+
+    <link rel="stylesheet" href="../lib/css/jqueryui.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/ui-darkness/theme.min.css"
+        integrity="sha256-qdWOjfLymJkPR3FaQMVq8zAA5woPAEgFneHg5tppBrM=" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="./css/adminSchedule.css">
+    <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" href="./mediaQueries/mediaAdmin.css">
+
+    <title>Page d'administrateur</title>
+</head>
+
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar" class="active">
+            <div>
+                <h4><a href="#" class="logo">Student Manager</a></h4>
+            </div>
+
+            <ul class="list-unstyled components mb-5">
+                <li class="active">
+                    <a href="#create-class"><span class="fa fa-home"></span> Gestions des classes</a>
+                </li>
+                <li>
+                    <a href="#new-users"><span class="fa fa-user"></span> Attribution des classes</a>
+                </li>
+                <li>
+                    <a href="#select-class"><span class="fa fa-sticky-note"></span> Affichage des classes</a>
+                </li>
+                <li>
+                    <a href="#timetable-section"><span class="fa fa-cogs"></span> Emplois du temps</a>
+                </li>
+                <li>
+                    <a href="#attendance-record-section"><span class="fa fa-cogs"></span> Récapitulatif</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Toggle Menu</span>
+                    </button>
+
+                    <div class="ctnr-name-disconect">
+                        <div class="name-disconnect">
+                            <i class="fas fa-power-off disconnect-fai"></i>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="blur"></div>
+            <!-- -------------------------------------------------------------------------------------------Section 1: Create class -->
+            <section id="create-class">
+                <div class="ctnr-left-side-select">
+                    <h2>Création des classes</h2>
+                    <form id="form-create-class">
+                        <input type="text" id="value-class-name" placeholder="Nom de la classe" required
+                            pattern="[0-9a-zA-Z_.-]*">
+                        <input type="submit" value="ajouter une classe" id="add-option-value" class="btn">
+                    </form>
+                </div>
+                <div class="ctnr-right-side-class-exist">
+                    <h2>Liste des différentes classes</h2>
+                    <table id="ctnr-class-list">
+                        <thead>
+                            <tr class="title-class">
+                                <th>Classe</th>
+                                <th>Modifier</th>
+                                <th>Supprimer</th>
+                            </tr>
+                        </thead>
+                        <tbody id="list-class">
+
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+
+            <!-- --------------------------------------------------------------------------------------------Section 2: Display users and attribute gradent -->
+            <section id="new-users">
+                <h2>Gestions des status des utilisateurs</h2>
+
+                <div class="display-user-connected">
+                    <table id="users">
+                        <thead>
+                            <tr class="title-user">
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th colspan="2">status</th>
+                                <th>Classe</th>
+                            </tr>
+                        </thead>
+                        <tbody id="list-users-status">
+
+                        </tbody>
+                    </table>
+                </div>
+                <form id="save-gradent-user">
+                    <input type="submit" class="btn register-grade-users" value="Envoyer">
+                </form>
+            </section>
+            <form id="add-student">
+                <input type="submit" value="Ajouter un utilisateurs" class="btn add-user">
+            </form>
+
+
+            <!-- --------------------------------------------------------------------------------------------Section 3A: Select class / show this list / update and delete  -->
+            <section id="select-class">
+                <div class="right-side-show-list-student">
+                    <div class="show-list-student-top">
+                        <h2>Liste des élèves</h2>
+                        <div class="select-class-list"></div>
+                    </div>
+                    <div id="display-class-student">
+                        <table class="display">
+                            <thead>
+                                <tr class="title-datas-student">
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
+                                    <th>Classe</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="list-all-class">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="left-side-show-list-former">
+                    <div class="show-list-former-top">
+                        <h2>Liste des Professeurs</h2>
+                    </div>
+                    <div id="display-former">
+                        <table class="display" style="width: 100%;">
+                            <thead>
+                                <tr class="title-datas-former">
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="list-all-former">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            </section>
+
+
+            <!---------------------------------------------------------------------------Section 4: -->
+            <section id="timetable-section">
+                <input type="hidden" id="datepicker-schedule-date">
+
+                <div class="add-edit-delete-subject-ctnr">
+                    <div class="btn-add">
+                        <h2>Liste des cours</h2>
+                        <input type="button" class="btn-add-subject btn" value="Ajouter">
+                    </div>
+                    <input type="hidden" id="datepicker-subject">
+                    <table id="display-subject">
+                        <thead>
+                            <tr class="title-subject">
+                                <th>Matière</th>
+                                <th>Date du cours</th>
+                                <th>Editer</th>
+                                <th>Supprimer</th>
+                            </tr>
+                        </thead>
+                        <tbody id="list-all-subject"></tbody>
+                    </table>
+                </div>
+                <div class="date"></div>
+                <div id="ctnr-schedule">
+                    <div class='centered'>
+                        <div id='schedule'>
+                            <div class='s-legend'>
+                                <div class='s-cell s-head-info'>
+                                    <div class='s-name'>/</div>
+                                </div>
+                                <div class='s-week-day s-cell'>
+                                    <div class='s-day'>Lundi</div>
+                                </div>
+                                <div class='s-week-day s-cell'>
+                                    <div class='s-day'>Mardi</div>
+                                </div>
+                                <div class='s-week-day s-cell'>
+                                    <div class='s-day'>Mercredi</div>
+                                </div>
+                                <div class='s-week-day s-cell'>
+                                    <div class='s-day'>Jeudi</div>
+                                </div>
+                                <div class='s-week-day s-cell'>
+                                    <div class='s-day'>Vendredi</div>
+                                </div>
+                            </div>
+                            <div class='s-container s-block'>
+                                <div class='s-head-info'>
+                                    <div class='s-head-hour'>
+                                        <div class='s-number'>0</div>
+                                        <div class='s-hourly-interval'>9.00-10.00</div>
+                                    </div>
+                                    <div class='s-head-hour'>
+                                        <div class='s-number'>1</div>
+                                        <div class='s-hourly-interval'>10.00 - 11.00</div>
+                                    </div>
+                                    <div class='s-head-hour'>
+                                        <div class='s-number'>2</div>
+                                        <div class='s-hourly-interval'>11.00 - 12.00</div>
+                                    </div>
+                                    <div class='s-head-hour'>
+                                        <div class='s-number'>3</div>
+                                        <div class='s-hourly-interval'>12.00 - 13.00</div>
+                                    </div>
+                                    <div class='s-head-hour'>
+                                        <div class='s-number'>4</div>
+                                        <div class='s-hourly-interval'>13.00 - 14.00</div>
+                                    </div>
+                                    <div class='s-head-hour'>
+                                        <div class='s-number'>5</div>
+                                        <div class='s-hourly-interval'>14.00 - 15.00</div>
+                                    </div>
+                                    <div class='s-head-hour'>
+                                        <div class='s-number'>6</div>
+                                        <div class='s-hourly-interval'>15.00 - 16.00</div>
+                                    </div>
+                                    <div class='s-head-hour'>
+                                        <div class='s-number'>7</div>
+                                        <div class='s-hourly-interval'>16.00 - 17.00</div>
+                                    </div>
+                                    <div class='s-head-hour'>
+                                        <div class='s-number'>8</div>
+                                        <div class='s-hourly-interval'>17.00 - 18.00</div>
+                                    </div>
+                                    <div class='s-head-hour'>
+                                        <div class='s-number'>9</div>
+                                        <div class='s-hourly-interval'>18.00 - 19.00</div>
+                                    </div>
+                                    <div class='s-head-hour'>
+                                        <div class='s-number'>10</div>
+                                        <div class='s-hourly-interval'>19.00 - 20.00</div>
+                                    </div>
+                                </div>
+                                <div class='s-rows-container'>
+                                    <div class='s-activities'>
+                                        <div class='s-act-row'>
+                                        </div>
+                                        <div class='s-act-row'>
+                                        </div>
+                                        <div class='s-act-row'></div>
+                                        <div class='s-act-row'>
+                                        </div>
+                                        <div class='s-act-row'></div>
+                                    </div>
+                                    <div class='s-row s-hour-row'>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                    </div>
+                                    <div class='s-row s-hour-row'>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                    </div>
+                                    <div class='s-row s-hour-row'>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                    </div>
+                                    <div class='s-row s-hour-row'>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                    </div>
+                                    <div class='s-row s-hour-row'>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                    </div>
+                                    <div class='s-row s-hour-row'>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                    </div>
+                                    <div class='s-row s-hour-row'>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                    </div>
+                                    <div class='s-row s-hour-row'>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                    </div>
+                                    <div class='s-row s-hour-row'>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                    </div>
+                                    <div class='s-row s-hour-row'>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                    </div>
+                                    <div class='s-row s-hour-row'>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                        <div class='s-hour-wrapper s-cell'>
+                                            <div class='s-half-hour'></div>
+                                            <div class='s-half-hour'></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-ctnr">
+                    <input type="button" id="precWeek" class="btn" value="Semaine précedente">
+                    <input type="button" id="addWeek" class="btn" value=" Semaine suivante">
+                </div>
+            </section>
+
+
+
+            <!-- -----------------------------------------------------------------------------------------------Section 4:  -->
+            <section id="attendance-record-section">
+                <div class="blur"></div>
+                <div class="display-attendance-student">
+                    <div class="ctnr-attendance-choose-date">
+                        <h2>Récapitulatif</h2>
+                        <h2 id="attendance-class">Classe :</h2>
+                        <form id="attendance-day">
+                            <input type="text" placeholder="Selectionner une date" id="datepicker-attendance">
+                            <input type="submit" value="Valider cette date" class="btn">
+                        </form>
+                    </div>
+
+
+                    <table id="display-attendance">
+                        <thead>
+                            <tr class="title-attendance-student">
+                                <th>Date</th>
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                                <th>Justification</th>
+                                <th>Présence</th>
+                                <th>Retard</th>
+                                <th>Absence</th>
+                            </tr>
+                        </thead>
+                        <tbody id="list-all-attendance">
+
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-firestore.js"></script>
+
+    <!-- Lib -->
+    <script src="../lib/js/all.min.js"></script>
+    <script src="../lib/js/jquery.js"></script>
+    <script src="../lib/js/popper.js"></script>
+    <script src="../lib/js/bootstrap.min.js"></script>
+    <script src="../lib/js/jqueryui.min.js"></script>
+
+
+    <!-- Initalization firebase -->
+    <script src="../back/js/admin/admin.js"></script>
+
+    <!-- Create class (create class : section 1) -->
+    <script src="../back/js/admin/functionAdmin/01_addClass.js"></script>
+
+    <!-- Delete the class  (select class : section 1) -->
+    <script src="../back/js/admin/functionAdmin/01_deleteClass.js"></script>
+
+    <!-- Edit the class (select class : section 1)-->
+    <script src="../back/js/admin/functionAdmin/01_editNewClass.js"></script>
+
+    <!-- Add grade student in dataBase (new users : section 2) -->
+    <script src="../back/js/admin/functionAdmin/02_saveGradentUser.js"></script>
+
+    <!-- Display class selected (display class student : section 3A) -->
+    <script src="../back/js/admin/functionAdmin/03_displayClassStudent.js"></script>
+
+    <!-- Add new user in dataBase (select class: section 3A) -->
+    <script src="../back/js/admin/functionAdmin/04_adminAddNewUser.js"></script>
+
+    <script src="../back/js/student/functionStudent/05_disconnect.js"></script>
+
+    <!-- Schedule add subject and edit (timetable-section : section 4) -->
+    <script src="../back/js/admin/functionAdmin/05_scheduleDisplay.js"></script>
+
+    <script src="../back/js/admin/functionAdmin/05_displaySubject.js"></script>
+
+    <script src="../back/js/admin/functionAdmin/05_addSubject.js"></script>
+
+    <script src="../back/js/admin/functionAdmin/05_editSubject.js"></script>
+
+    <script src="../back/js/admin/functionAdmin/05_deleteSubject.js"></script>
+
+    <script src="../back/js/admin/functionAdmin/06_attendance.js"></script>
+</body>
+
+</html>

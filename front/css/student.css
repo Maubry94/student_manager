@@ -1,0 +1,300 @@
+@font-face {
+    font-family: 'MontserratRegular';
+    src: url('../../font/montserrat/Montserrat-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'MontserratBold';
+    src: url('../../font/montserrat/Montserrat-Bold.ttf');
+}
+
+* {
+    font-family: MontserratRegular;
+}
+
+body {
+    margin: 0;
+}
+
+::placeholder {
+    font-size: 14px;
+}
+
+.btn {
+    padding: 8px 20px;
+    margin: 10px 0;
+    background-color: #47748b;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+
+.btn:hover {
+    box-shadow: 0px 0px 0px 2px #47748b inset, 0px 0px 0px 4px white inset;
+    color: white;
+}
+
+.btn:active {
+    transform: scale(0.9);
+}
+
+/*---------------------------------------------show/change Profil picture*/
+.ctnr-picture {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#current-picture {
+    width: 80px;
+    height: 80px;
+    background-color: grey;
+    overflow: hidden;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 40px;
+}
+
+.picture-change {
+    padding: 15px;
+    display: none;
+    position: absolute;
+    left: 40%;
+    width: 25%;
+    height: auto;
+    background-color: lightgray;
+}
+
+input[type=file] {
+    padding: 4px;
+}
+
+label {
+    margin: 15px;
+}
+
+#preview-picture {
+    width: 80px;
+    height: 80px;
+    background-color: grey;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+#send-picture {
+    margin-top: 25px;
+}
+
+img {
+    width: 100%;
+}
+
+/*--------------------------------------------- Disconnect container*/
+.ctnr-name-disconect {
+    width: auto;
+    height: 80px;
+    margin-right: 30px;
+    display: flex
+}
+
+.name-disconnect {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.name-disconnect h3 {
+    margin: 0;
+    margin-right: 10px;
+}
+
+.disconnect-fai {
+    cursor: pointer;
+}
+
+/*Dynamic subject content*/
+.current-subject-late-absent span {
+    font-family: MontserratBold;
+    text-transform: uppercase;
+}
+
+/*--------------------------------------------- Message section */
+#student-message-section {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.student-message-ctnr {
+    padding: 20px;
+    width: 70%;
+    height: 257px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    margin-top: 60px;
+    background-color: #DEE0E0;
+    border-radius: 4px;
+    align-items: center;
+}
+
+.student-state {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.student-state label {
+    text-align: center;
+    margin: 0;
+}
+
+.student-state label:first-child {
+    margin-top: 0;
+}
+
+.current-subject-late-absent {
+    min-width: 35%;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.current-subject-late-absent p {
+    margin-right: 4px;
+    margin-bottom: 0;
+}
+
+.current-subject-late-absent h3 {
+    margin-right: 4px;
+    margin-bottom: 0;
+}
+
+.ctnr-student-late,
+.ctnr-student-absent {
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+    padding: 10px;
+    align-items: center;
+}
+
+.ctnr-student-late label::after,
+.ctnr-student-absent label::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #000;
+    transition: width .3s;
+}
+
+.ctnr-student-late label:hover::after,
+.ctnr-student-absent label:hover::after {
+    width: 100%;
+}
+
+#student-message {
+    margin-top: 30px;
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+textarea {
+    outline: none
+}
+
+.date {
+    width: 95%;
+    display: flex;
+    margin-left: 5%;
+}
+
+.date p {
+    padding: 4px;
+}
+
+
+/*--------------------------------------------- Timetable section */
+#timetable-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/*--------------------------------------------- Attendance record section */
+#attendance-record-section {
+    margin-top: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#attendance-record-section table {
+    width: 90%;
+    margin: 0 5%;
+}
+
+#attendance-record-section tr {
+    display: flex;
+}
+
+#attendance-record-section #title-attendance {
+    border-bottom: 2px solid grey;
+    padding: 8px;
+}
+
+#attendance-record-section tr:nth-child(1),
+#attendance-record-section tr:nth-child(2) {
+    display: flex;
+    border-bottom: none;
+}
+
+#attendance-record-section th {
+    width: 100%;
+}
+
+#attendance-record-section td {
+    padding: 10px;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    margin: 1px;
+}
+
+.content {
+    border-top: none;
+}
+
+.ctnr-prof-module p {
+    text-align: left;
+}
+
+.btn-ctnr {
+    margin-top: 50px;
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
+}

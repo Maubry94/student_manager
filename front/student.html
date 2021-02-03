@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../lib/css/bootstrap.css" />
+    <link rel="stylesheet" href="../lib/css/jqueryui.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/ui-darkness/theme.min.css"
+      integrity="sha256-qdWOjfLymJkPR3FaQMVq8zAA5woPAEgFneHg5tppBrM="
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="./css/adminSchedule.css" />
+    <link rel="stylesheet" href="./css/student.css" />
+    <link rel="stylesheet" href="./mediaQueries/mediaStudent.css" />
+    <title>Espace élève</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="#"
+            >Message <span class="sr-only">(current)</span></a
+          >
+          <a class="nav-item nav-link" href="#">Emplois du temps</a>
+          <a class="nav-item nav-link" href="#">Récapitulatif</a>
+        </div>
+      </div>
+
+      <div class="ctnr-name-disconect">
+        <div class="picture-change">
+          <label for="file">Image à charger :</label>
+          <input type="file" class="form-control-file" id="file" />
+          <div class="ctnr-picture">
+            <label for="">Aperçu</label>
+            <div id="preview-picture"></div>
+            <form action="" id="send-picture">
+              <input type="submit" class="btn" value="Valider" />
+            </form>
+          </div>
+        </div>
+
+        <div id="current-picture">
+          <img
+            class="default-img"
+            src="../front/img/defaultPicture.png"
+            alt="DefaultPicture"
+          />
+        </div>
+        <div class="name-disconnect">
+          <i class="fas fa-power-off disconnect-fai"></i>
+        </div>
+      </div>
+    </nav>
+
+    <section id="student-message-section">
+      <div class="current-subject-late-absent"></div>
+
+      <div class="student-message-ctnr">
+        <div class="student-state">
+          <h3>Vous serez :</h3>
+          <div class="ctnr-student-late">
+            <input type="radio" checked name="state" id="student-late" />
+            <label for="student-late">en retard</label>
+          </div>
+          <div class="ctnr-student-absent">
+            <input type="radio" name="state" id="student-absent" />
+            <label for="student-absent">absent(e)</label>
+          </div>
+        </div>
+
+        <form id="student-message">
+          <textarea
+            cols="50"
+            rows="4"
+            placeholder="Justification du retard"
+            id="justif"
+            maxlength="200"
+          ></textarea>
+          <input
+            type="submit"
+            id="send-delay-message"
+            class="btn-delay-message btn"
+            value="Envoyer"
+          />
+          <input type="hidden" id="datepicker" />
+        </form>
+      </div>
+    </section>
+
+    <div class="title-section"></div>
+
+    <section id="timetable-section">
+      <input type="hidden" id="datepicker-schedule-date" />
+
+      <div class="date"></div>
+      <div id="ctnr-schedule">
+        <div class="centered">
+          <div id="schedule">
+            <div class="s-legend">
+              <div class="s-cell s-head-info">
+                <div class="s-name">/</div>
+              </div>
+              <div class="s-week-day s-cell">
+                <div class="s-day">Lundi</div>
+              </div>
+              <div class="s-week-day s-cell">
+                <div class="s-day">Mardi</div>
+              </div>
+              <div class="s-week-day s-cell">
+                <div class="s-day">Mercredi</div>
+              </div>
+              <div class="s-week-day s-cell">
+                <div class="s-day">Jeudi</div>
+              </div>
+              <div class="s-week-day s-cell">
+                <div class="s-day">Vendredi</div>
+              </div>
+            </div>
+            <div class="s-container s-block">
+              <div class="s-head-info">
+                <div class="s-head-hour">
+                  <div class="s-number">0</div>
+                  <div class="s-hourly-interval">9.00-10.00</div>
+                </div>
+                <div class="s-head-hour">
+                  <div class="s-number">1</div>
+                  <div class="s-hourly-interval">10.00 - 11.00</div>
+                </div>
+                <div class="s-head-hour">
+                  <div class="s-number">2</div>
+                  <div class="s-hourly-interval">11.00 - 12.00</div>
+                </div>
+                <div class="s-head-hour">
+                  <div class="s-number">3</div>
+                  <div class="s-hourly-interval">12.00 - 13.00</div>
+                </div>
+                <div class="s-head-hour">
+                  <div class="s-number">4</div>
+                  <div class="s-hourly-interval">13.00 - 14.00</div>
+                </div>
+                <div class="s-head-hour">
+                  <div class="s-number">5</div>
+                  <div class="s-hourly-interval">14.00 - 15.00</div>
+                </div>
+                <div class="s-head-hour">
+                  <div class="s-number">6</div>
+                  <div class="s-hourly-interval">15.00 - 16.00</div>
+                </div>
+                <div class="s-head-hour">
+                  <div class="s-number">7</div>
+                  <div class="s-hourly-interval">16.00 - 17.00</div>
+                </div>
+                <div class="s-head-hour">
+                  <div class="s-number">8</div>
+                  <div class="s-hourly-interval">17.00 - 18.00</div>
+                </div>
+                <div class="s-head-hour">
+                  <div class="s-number">9</div>
+                  <div class="s-hourly-interval">18.00 - 19.00</div>
+                </div>
+                <div class="s-head-hour">
+                  <div class="s-number">10</div>
+                  <div class="s-hourly-interval">19.00 - 20.00</div>
+                </div>
+              </div>
+              <div class="s-rows-container">
+                <div class="s-activities">
+                  <div class="s-act-row"></div>
+                  <div class="s-act-row"></div>
+                  <div class="s-act-row"></div>
+                  <div class="s-act-row"></div>
+                  <div class="s-act-row"></div>
+                </div>
+                <div class="s-row s-hour-row">
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                </div>
+                <div class="s-row s-hour-row">
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                </div>
+                <div class="s-row s-hour-row">
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                </div>
+                <div class="s-row s-hour-row">
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                </div>
+                <div class="s-row s-hour-row">
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                </div>
+                <div class="s-row s-hour-row">
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                </div>
+                <div class="s-row s-hour-row">
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                </div>
+                <div class="s-row s-hour-row">
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                </div>
+                <div class="s-row s-hour-row">
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                </div>
+                <div class="s-row s-hour-row">
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                </div>
+                <div class="s-row s-hour-row">
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                  <div class="s-hour-wrapper s-cell">
+                    <div class="s-half-hour"></div>
+                    <div class="s-half-hour"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-ctnr">
+        <input
+          type="button"
+          id="precWeek"
+          class="btn"
+          value="Semaine précedente"
+        />
+        <input
+          type="button"
+          id="addWeek"
+          class="btn"
+          value=" Semaine suivante"
+        />
+      </div>
+    </section>
+
+    <section id="attendance-record-section">
+      <table id="datas-student">
+        <tr id="title-attendance">
+          <th class="title-array">Date</th>
+          <th class="title-array">Justification</th>
+          <th class="title-array">Nombre de présence</th>
+          <th class="title-array">Nombre de retard</th>
+          <th class="title-array">Nombre d'absence</th>
+        </tr>
+      </table>
+    </section>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-storage.js"></script>
+
+    <!-- Lib -->
+    <script src="../lib/js/jquery.js"></script>
+    <script src="../lib/js/jqueryui.min.js"></script>
+    <script src="../lib/js/popper.js"></script>
+    <script src="../lib/js/bootstrap.min.js"></script>
+    <script src="../lib/js/all.min.js"></script>
+
+    <!-- Initialize firebase -->
+    <script src="../back/js/student/student.js"></script>
+    <!-- Display name of student -->
+    <script src="../back/js/student/functionStudent/01_displayNameSubject.js"></script>
+    <!-- Display today subject -->
+    <script src="../back/js/student/functionStudent/01_displayCurrentSubject.js"></script>
+    <!-- Send message for the former -->
+    <script src="../back/js/student/functionStudent/02_sendMessage.js"></script>
+    <!-- Display this schedule -->
+    <script src="../back/js/student/functionStudent/03_displaySchedule.js"></script>
+    <!-- Display this number of presence / late / absent -->
+    <script src="../back/js/student/functionStudent/04_attendance.js"></script>
+    <!-- Disconnect user -->
+    <script src="../back/js/student/functionStudent/05_disconnect.js"></script>
+  </body>
+</html>
